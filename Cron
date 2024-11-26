@@ -1,0 +1,8 @@
+Para mejorar la funcionalidad de este programita voy a dejarte un CRON el cual puedas editar para que sea automático
+Primero que todo:
+crontab -e
+Voy a crear una tarea para que se haga todos los dias a las 17:00:
+0 17 * * * /bin/bash /ruta/a/tu/script/Alerta.Disco.sh
+Guardalo con un Ctrl+o y Ctrl+x
+Verifica que tengas la tarea creada:
+crontab -l
