@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Porcentaje de uso máximo del disco permitido (Ejemplo 40%)
+UMBRAL_DISCO=40
+
+# Comprobar el uso del espacio en disco y verificar si excede el límite
+df -h | grep -vE '^Filesystem|tmpfs|cdrom' | while read -r estado; do
+    porcentaje=$(echo $estado | awk '{ print $5 }' | sed 's/%//')
+    unidad=$(echo $estado | awk '{ print $1 }')
+    
+    if [ "$porcentaje" -ge "$UMBRAL_DISCO" ]; then
+        echo "Alerta: El espacio de la unidad $unidad ha alcanzado el $porcentaje% de su capacidad."
+    fi
+done
